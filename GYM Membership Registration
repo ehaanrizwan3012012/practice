@@ -1,0 +1,215 @@
+// Write a JavaScript program for a Movie Ticket Booking System. Complete the following requirements. Do not use arrays.
+
+// Display a welcome message to the user.
+// Declare variables to store:
+// Customer Name
+// Movie Name
+// Seat Type
+// Customer Age
+// Number of Tickets
+// Ticket Price
+// Total Amount
+// Discount
+// Final Amount
+// Take the following information from the user:
+// Customer Name
+// Customer Age
+// Movie Name
+// Number of Tickets
+// Seat Type (Silver, Gold, or Platinum)
+// Ask the user to confirm the ticket booking.
+// Set the ticket price as follows:
+// Silver = Rs. 500 per ticket
+// Gold = Rs. 800 per ticket
+// Platinum = Rs. 1200 per ticket
+// Calculate the Total Amount based on the ticket price and the number of tickets.
+// Determine whether the customer's age is even or odd.
+// Increase the total number of booked customers after a successful booking.
+// Calculate the Final Amount after applying the appropriate discount.
+// Display the following message:
+
+// "Welcome, [Customer Name]! Your movie ticket booking has been completed successfully."
+
+// Check whether the customer's age is 18 years or above.
+// Apply the following discount policy:
+// 20% discount if the customer purchases more than 5 tickets.
+// 10% discount if the customer purchases 3 to 5 tickets.
+// No discount otherwise.
+// Check the following conditions:
+// The customer has confirmed the booking.
+// The customer is eligible to watch the movie.
+// Use nested conditions to:
+// Check the customer's age.
+// Check the selected seat type.
+// Calculate the appropriate discount.
+// Display the ticket number from 1 to the total number of tickets booked.
+// Stop the booking process once it has been completed successfully.
+// Create the following functions:
+// welcomeCustomer()
+// checkEligibility()
+// calculateDiscount()
+// calculateFinalAmount()
+// At the end of the program, display a Movie Ticket Booking Receipt containing:
+// Customer Name
+// Age
+// Movie Name
+// Seat Type
+// Number of Tickets
+// Ticket Price
+// Total Amount
+// Discount
+// Final Amount
+// Booking Status
+
+// Movie Ticket Booking System
+
+alert("Welcome to the Movie Ticket Booking System!");
+
+// Variables
+var customerName;
+var movieName;
+var seatType;
+var customerAge;
+var numberOfTickets;
+var ticketPrice;
+var totalAmount;
+var discount = 0;
+var finalAmount;
+var bookedCustomers = 0;
+var bookingStatus;
+
+// User Input
+customerName = prompt("Enter Customer Name:");
+customerAge = Number(prompt("Enter Customer Age:"));
+movieName = prompt("Enter Movie Name:");
+numberOfTickets = Number(prompt("Enter Number of Tickets:"));
+seatType = prompt("Enter Seat Type (Silver / Gold / Platinum):");
+
+// Confirm Booking
+var confirmBooking = confirm("Do you want to confirm your booking?");
+
+// Set Ticket Price
+if (seatType == "Silver") {
+    ticketPrice = 500;
+}
+else if (seatType == "Gold") {
+    ticketPrice = 800;
+}
+else if (seatType == "Platinum") {
+    ticketPrice = 1200;
+}
+else {
+    ticketPrice = 0;
+    console.log("Invalid Seat Type");
+}
+
+// Function: Welcome Customer
+function welcomeCustomer() {
+    console.log("Welcome " + customerName + "! Your movie ticket booking has been completed successfully.");
+}
+
+// Function: Check Eligibility
+function checkEligibility() {
+    if (customerAge >= 18) {
+        console.log("Customer is eligible to watch the movie.");
+        return true;
+    } else {
+        console.log("Customer is not eligible to watch the movie.");
+        return false;
+    }
+}
+
+// Function: Calculate Discount
+function calculateDiscount() {
+    if (numberOfTickets > 5) {
+        discount = totalAmount * 20 / 100;
+    }
+    else if (numberOfTickets >= 3 && numberOfTickets <= 5) {
+        discount = totalAmount * 10 / 100;
+    }
+    else {
+        discount = 0;
+    }
+}
+
+// Function: Calculate Final Amount
+function calculateFinalAmount() {
+    finalAmount = totalAmount - discount;
+}
+
+// Calculate Total Amount
+totalAmount = ticketPrice * numberOfTickets;
+
+// Check Age Even or Odd
+if (customerAge % 2 == 0) {
+    console.log("Customer Age is Even.");
+} else {
+    console.log("Customer Age is Odd.");
+}
+
+// Increase Booked Customers
+bookedCustomers++;
+
+// Welcome Message
+welcomeCustomer();
+
+// Check Eligibility
+checkEligibility();
+
+// Booking Status
+if (confirmBooking && customerAge >= 18) {
+    bookingStatus = "Confirmed";
+    console.log("Booking Confirmed.");
+}
+else {
+    bookingStatus = "Rejected";
+    console.log("Booking Rejected.");
+}
+
+// Nested If
+if (customerAge >= 18) {
+    if (seatType == "Silver" || seatType == "Gold" || seatType == "Platinum") {
+        calculateDiscount();
+    }
+}
+
+// Calculate Final Amount
+calculateFinalAmount();
+
+console.log("Total Amount: Rs. " + totalAmount);
+console.log("Discount: Rs. " + discount);
+console.log("Final Amount: Rs. " + finalAmount);
+
+// Ticket Numbers
+for (var i = 1; i <= numberOfTickets; i++) {
+    console.log("Ticket Number: " + i);
+}
+
+// Booking Process
+var bookingComplete = false;
+
+for (var j = 1; j <= 5; j++) {
+    if (!bookingComplete) {
+        console.log("Processing Booking...");
+        bookingComplete = true;
+        console.log("Booking Completed Successfully.");
+        break;
+    }
+}
+
+// Receipt
+console.log("     MOVIE TICKET BOOKING RECEIPT      ");
+
+console.log("Customer Name : " + customerName);
+console.log("Age : " + customerAge);
+console.log("Movie Name : " + movieName);
+console.log("Seat Type : " + seatType);
+console.log("Tickets : " + numberOfTickets);
+console.log("Ticket Price : Rs. " + ticketPrice);
+console.log("Total Amount : Rs. " + totalAmount);
+console.log("Discount : Rs. " + discount);
+console.log("Final Amount : Rs. " + finalAmount);
+console.log("Booking Status : " + bookingStatus);
+console.log("Booked Customers : " + bookedCustomers);
+
+console.log("Thank You! Enjoy Your Movie.");
