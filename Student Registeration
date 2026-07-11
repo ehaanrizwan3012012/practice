@@ -1,0 +1,207 @@
+// Write a JavaScript program for a Student Event Registration System. Complete the following requirements. Do not use arrays.
+// Display a welcome message using alert().
+// Declare string variables to store:
+// Student Name
+// Department
+// Membership Status
+// Declare number variables to store:
+// Age
+// Student ID
+// Registration Fee
+// Number of Workshops
+// Available Seats
+// Use only legal variable names.
+// Take input from the user using prompt() for:
+// Student Name
+// Age
+// Student ID
+// Department
+// Number of Workshops
+// Membership Status (Yes/No)
+// Calculate the Total Fee, Discount, and Final Payable Amount using the arithmetic operators (+, -, *, /).
+// Use the modulus operator (%) to check whether the Student ID is even or odd.
+// Use the increment operator (++) to increase the total number of registered students after registration.
+// Use parentheses () to correctly calculate the final payable amount.
+// Concatenate strings to display the following message:
+// "Welcome Ali! You have successfully registered for the Tech Event."
+// Use an if statement to check whether the student's age is 18 years or above.
+// Use comparison operators (==, !=, >, <, >=, <=) wherever required.
+// Use if, else if, and else statements to apply discounts:
+// 30% discount for Premium Members.
+// 15% discount for Regular Members.
+// No discount for others.
+// Use logical operators (&&, ||, !) to check conditions such as:
+// The student is 18 years or older.
+// Seats are available.
+// Use nested if statements to:
+// Check eligibility.
+// Check membership.
+// Calculate the appropriate discount.
+// Use a for loop to display the registration number from 1 to the number of workshops selected.
+// Use another for loop with a Boolean variable, a flag, and the break statement to stop the loop when the registration is successfully completed.
+// Create the following functions:
+// greetStudent()
+// checkEligibility()
+// calculateDiscount()
+// calculateFinalFee()
+
+// Student Event Registration System
+alert("Welcome to the Student Event Registration System!");
+
+// String Variables
+var studentName;
+var department;
+var membershipStatus;
+
+// Number Variables
+var age;
+var studentID;
+var registrationFee = 1000;
+var numberOfWorkshops;
+var availableSeats = 20;
+var totalFee;
+var discount = 0;
+var finalPayableAmount;
+var registeredStudents = 0;
+
+// User Input
+studentName = prompt("Enter Student Name:");
+age = Number(prompt("Enter Age:"));
+studentID = Number(prompt("Enter Student ID:"));
+department = prompt("Enter Department:");
+numberOfWorkshops = Number(prompt("Enter Number of Workshops:"));
+membershipStatus = prompt("Enter Membership Status (Premium/Regular/No):");
+
+// Function: Greet Student
+function greetStudent() {
+    console.log("Welcome " + studentName + "! You have successfully registered for the Tech Event.");
+}
+
+// Function: Check Eligibility
+function checkEligibility() {
+    if (age >= 18) {
+        console.log("Student is eligible.");
+        return true;
+    } else {
+        console.log("Student is not eligible.");
+        return false;
+    }
+}
+
+// Function: Calculate Discount
+function calculateDiscount() {
+    if (membershipStatus == "Premium") {
+        discount = totalFee * 30 / 100;
+    } else if (membershipStatus == "Regular") {
+        discount = totalFee * 15 / 100;
+    } else {
+        discount = 0;
+    }
+}
+
+// Function: Calculate Final Fee
+function calculateFinalFee() {
+    finalPayableAmount = (totalFee - discount);
+}
+
+// Total Fee Calculation
+totalFee = registrationFee * numberOfWorkshops;
+
+// Check Student ID Even or Odd
+if (studentID % 2 == 0) {
+    console.log("Student ID is Even.");
+} else {
+    console.log("Student ID is Odd.");
+}
+
+// Increase Registered Students
+registeredStudents++;
+console.log("Registered Students: " + registeredStudents);
+
+// Greeting
+greetStudent();
+
+// Eligibility Check
+checkEligibility();
+
+// Nested If Statements
+if (age >= 18) {
+    if (membershipStatus == "Premium") {
+        discount = totalFee * 30 / 100;
+    } else if (membershipStatus == "Regular") {
+        discount = totalFee * 15 / 100;
+    } else {
+        discount = 0;
+    }
+} else {
+    console.log("Not eligible for registration.");
+}
+
+// Logical Operators
+if (age >= 18 && availableSeats > 0) {
+    console.log("Registration Allowed.");
+} else if (age < 18 || availableSeats <= 0) {
+    console.log("Registration Not Allowed.");
+}
+
+if (!(availableSeats == 0)) {
+    console.log("Seats are available.");
+}
+
+// Function Calls
+calculateDiscount();
+calculateFinalFee();
+
+// Display Fee Details
+console.log("Total Fee: " + totalFee);
+console.log("Discount: " + discount);
+console.log("Final Payable Amount: " + finalPayableAmount);
+
+// For Loop: Registration Numbers
+for (var i = 1; i <= numberOfWorkshops; i++) {
+    console.log("Registration Number: " + i);
+}
+
+// For Loop with Boolean, Flag and Break
+var registrationComplete = false;
+
+for (var j = 1; j <= 10; j++) {
+    if (!registrationComplete) {
+        console.log("Processing Registration...");
+        registrationComplete = true;
+        console.log("Registration Completed Successfully.");
+        break;
+    }
+}
+// Receipt
+console.log("      STUDENT EVENT RECEIPT      ");
+
+console.log("Student Name : " + studentName);
+console.log("Student ID : " + studentID);
+console.log("Age : " + age);
+console.log("Department : " + department);
+console.log("Membership Status : " + membershipStatus);
+console.log("Workshops : " + numberOfWorkshops);
+console.log("Registration Fee : " + registrationFee);
+console.log("Total Fee : " + totalFee);
+console.log("Discount : " + discount);
+console.log("Final Amount : " + finalPayableAmount);
+
+if (age >= 18) {
+    console.log("Eligibility : Eligible");
+} else {
+    console.log("Eligibility : Not Eligible");
+}
+
+if (studentID % 2 == 0) {
+    console.log("Student ID Type : Even");
+} else {
+    console.log("Student ID Type : Odd");
+}
+
+console.log("Available Seats : " + availableSeats);
+console.log("Registered Students : " + registeredStudents);
+console.log("Thank You for Registering!");
+console.log("Have a Great Day!");
+// https://github.com/ehaanrizwan3012012/practice.git
+
