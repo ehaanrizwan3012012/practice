@@ -1,0 +1,65 @@
+// Write a JavaScript program for a Car Rental Booking System. Complete the following requirements:
+
+// Display input boxes using prompt() to take the following information from the user:
+// Customer Name
+// Customer Age
+// Number of Rental Days
+// Car Type (Normal, SUV, Luxury)
+// Assume the rent per day is Rs. 500.
+// Calculate the Total Rent by multiplying the rent per day by the number of rental days and display it.
+
+// Use an if statement to check whether the customer's age is less than 21 years. If the age is less than 21, display:
+
+// Booking is rejected due to the age limit.
+// Calculate a 10% discount on the total rent. If the rental period is more than 7 days, display the discounted amount.
+
+// Use a logical AND (&&) operator to check whether the customer has selected a Luxury car and is under 25 years of age. If both conditions are true, reject the booking by displaying:
+
+// Booking is rejected due to the age limit.
+// Store the final payable amount in a separate variable and display it.
+// At the end of the program, display a Car Rental Receipt containing:
+// Customer Name
+// Age
+// Car Type
+// Rental Days
+// Final Payable Amount
+// Use appropriate variables, arithmetic operators (*, -), comparison operators (<, >), logical operators (&&), and if statements to complete the program.
+
+var userName = prompt("enter your name");
+var age = prompt("enter your age");
+var rentalDays = prompt("enter the rental days")
+var carType = prompt("choose the car type: \n 1.NORMAL \n 2.SUV \n 3.LUXURY");
+
+var rentPerDay = 500;
+
+var totalRent = rentPerDay * rentalDays;
+console.log(totalRent);
+
+if (age < 21) {
+    console.log("booking is rejected due to the age limit");
+}
+
+var percent = totalRent * 0.1;
+var newPercent = totalRent - percent;
+
+if (rentalDays > 7) {
+    console.log(newPercent);
+}
+
+if (carType == "LUXURY" && age < 25){
+    console.log("booking is rejected due to the age limit"); 
+}
+
+var finalResult = newPercent;
+console.log(finalResult);
+
+var reciept = ("Name:" + userName);
+document.write(reciept);
+var reciept = ("   Age:" + age);
+document.write(reciept);
+var reciept = ("   Car Type:" + carType);
+document.write(reciept);
+var reciept = ("   Rental Days:" + rentalDays);
+document.write(reciept);
+var reciept = ("   Total Amount:" + newPercent);
+document.write(reciept);
