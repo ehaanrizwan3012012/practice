@@ -1,0 +1,213 @@
+// Write a program for a Hospital Patient Registration System. Complete the following requirements. Do not use arrays.
+
+// Display a welcome message to the user.
+// Declare variables to store:
+// Patient Name
+// Disease
+// Ward Type
+// Patient Age
+// Number of Days Admitted
+// Room Charge Per Day
+// Total Bill
+// Discount
+// Final Bill
+// Take the following information from the user:
+// Patient Name
+// Patient Age
+// Disease
+// Number of Days Admitted
+// Ward Type (General, Private, or VIP)
+// Ask the user to confirm the hospital admission.
+// Set the room charges as follows:
+// General = Rs. 1000 per day
+// Private = Rs. 2000 per day
+// VIP = Rs. 3500 per day
+// Calculate the total bill based on the room charges and the number of days admitted.
+// Determine whether the patient's age is even or odd.
+// Increase the total number of admitted patients after a successful registration.
+// Calculate the final bill after applying the discount.
+// Display the following message:
+
+// "Welcome "patient name"! Your hospital registration has been completed successfully."
+
+// Check whether the patient's age is 12 years or above.
+// Apply the following discount policy:
+// 20% discount if the patient stays for more than 10 days.
+// 10% discount if the patient stays between 5 and 10 days.
+// No discount otherwise.
+// Check the following conditions:
+// The patient has confirmed the admission.
+// The patient is eligible for admission.
+// First check the patient's age, then the selected ward type, and finally calculate the appropriate discount.
+// Display the day number from 1 to the total number of days admitted.
+// Stop the registration process when it is completed successfully.
+// Create the following functions:
+// welcomePatient()
+// checkEligibility()
+// calculateDiscount()
+// calculateFinalBill()
+// At the end of the program, display a Hospital Registration Receipt containing:
+// Patient Name
+// Age
+// Disease
+// Ward Type
+// Number of Days Admitted
+// Room Charge Per Day
+// Total Bill
+// Discount
+// Final Bill
+// Admission Status
+
+// Hospital Patient Registration System
+
+alert("Welcome to the Hospital Patient Registration System!");
+
+// Variables
+var patientName;
+var disease;
+var wardType;
+var age;
+var daysAdmitted;
+var roomChargePerDay;
+var totalBill;
+var discount = 0;
+var finalBill;
+var admittedPatients = 0;
+var admissionStatus;
+
+// User Input
+patientName = prompt("Enter Patient Name:");
+age = Number(prompt("Enter Patient Age:"));
+disease = prompt("Enter Disease:");
+daysAdmitted = Number(prompt("Enter Number of Days Admitted:"));
+wardType = prompt("Enter Ward Type (General / Private / VIP):");
+
+// Confirm Admission
+var confirmAdmission = confirm("Do you want to confirm the hospital admission?");
+
+// Set Room Charges
+if (wardType == "General") {
+    roomChargePerDay = 1000;
+}
+else if (wardType == "Private") {
+    roomChargePerDay = 2000;
+}
+else if (wardType == "VIP") {
+    roomChargePerDay = 3500;
+}
+else {
+    roomChargePerDay = 0;
+    console.log("Invalid Ward Type");
+}
+
+// Function: Welcome Patient
+function welcomePatient() {
+    console.log("Welcome " + patientName + "! Your hospital registration has been completed successfully.");
+}
+
+// Function: Check Eligibility
+function checkEligibility() {
+    if (age >= 12) {
+        console.log("Patient is eligible for admission.");
+        return true;
+    } else {
+        console.log("Patient is not eligible for admission.");
+        return false;
+    }
+}
+
+// Function: Calculate Discount
+function calculateDiscount() {
+    if (daysAdmitted > 10) {
+        discount = totalBill * 20 / 100;
+    }
+    else if (daysAdmitted >= 5 && daysAdmitted <= 10) {
+        discount = totalBill * 10 / 100;
+    }
+    else {
+        discount = 0;
+    }
+}
+
+// Function: Calculate Final Bill
+function calculateFinalBill() {
+    finalBill = totalBill - discount;
+}
+
+// Total Bill
+totalBill = roomChargePerDay * daysAdmitted;
+
+// Even or Odd Age
+if (age % 2 == 0) {
+    console.log("Patient Age is Even.");
+} else {
+    console.log("Patient Age is Odd.");
+}
+
+// Increase Admitted Patients
+admittedPatients++;
+
+// Greeting
+welcomePatient();
+
+// Eligibility
+checkEligibility();
+
+// Admission Confirmation
+if (confirmAdmission && age >= 12) {
+    admissionStatus = "Confirmed";
+    console.log("Admission Confirmed.");
+}
+else {
+    admissionStatus = "Rejected";
+    console.log("Admission Rejected.");
+}
+
+// Nested If
+if (age >= 12) {
+    if (wardType == "General" || wardType == "Private" || wardType == "VIP") {
+        calculateDiscount();
+    }
+}
+
+// Final Bill
+calculateFinalBill();
+
+console.log("Total Bill: " + totalBill);
+console.log("Discount: " + discount);
+console.log("Final Bill: " + finalBill);
+
+// Display Days
+for (var i = 1; i <= daysAdmitted; i++) {
+    console.log("Day " + i);
+}
+
+// Registration Complete
+var registrationComplete = false;
+
+for (var j = 1; j <= 5; j++) {
+    if (!registrationComplete) {
+        console.log("Processing Admission...");
+        registrationComplete = true;
+        console.log("Admission Completed Successfully.");
+        break;
+    }
+}
+
+// Receipt
+
+console.log("     HOSPITAL REGISTRATION RECEIPT      ");
+
+console.log("Patient Name : " + patientName);
+console.log("Age : " + age);
+console.log("Disease : " + disease);
+console.log("Ward Type : " + wardType);
+console.log("Days Admitted : " + daysAdmitted);
+console.log("Room Charge/Day : Rs. " + roomChargePerDay);
+console.log("Total Bill : Rs. " + totalBill);
+console.log("Discount : Rs. " + discount);
+console.log("Final Bill : Rs. " + finalBill);
+console.log("Admission Status : " + admissionStatus);
+console.log("Admitted Patients : " + admittedPatients);
+
+console.log("Thank You! Get Well Soon.");
