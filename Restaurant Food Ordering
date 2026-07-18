@@ -1,0 +1,217 @@
+// Write a JavaScript program for a Restaurant Food Ordering System. Complete the following requirements. Do not use arrays.
+
+// Display a welcome message to the user.
+// Declare variables to store:
+// Customer Name
+// Food Item
+// Meal Type
+// Customer Age
+// Quantity
+// Price Per Item
+// Total Bill
+// Discount
+// Final Bill
+// Take the following information from the user:
+// Customer Name
+// Customer Age
+// Food Item
+// Quantity
+// Meal Type (Breakfast, Lunch, or Dinner)
+// Ask the user to confirm the food order.
+// Set the price per item as follows:
+// Breakfast = Rs. 300
+// Lunch = Rs. 500
+// Dinner = Rs. 800
+// Calculate the Total Bill based on the price per item and the quantity.
+// Determine whether the customer's age is even or odd.
+// Increase the total number of food orders after a successful order.
+// Calculate the Final Bill after applying the appropriate discount.
+// Display the following message:
+
+// "Welcome, [Customer Name]! Your food order has been placed successfully."
+
+// Check whether the customer's age is 15 years or above.
+// Apply the following discount policy:
+// 20% discount if the customer orders more than 8 items.
+// 10% discount if the customer orders between 4 and 8 items.
+// No discount otherwise.
+// Check the following conditions:
+// The customer has confirmed the order.
+// The customer is eligible to place the order.
+// Use nested conditions to:
+// Check the customer's age.
+// Check the selected meal type.
+// Calculate the appropriate discount.
+// Display the item number from 1 to the total quantity ordered.
+// Stop the ordering process once it has been completed successfully.
+// Create the following functions:
+// welcomeCustomer()
+// checkEligibility()
+// calculateDiscount()
+// calculateFinalBill()
+// At the end of the program, display a Restaurant Order Receipt containing:
+// Customer Name
+// Age
+// Food Item
+// Meal Type
+// Quantity
+// Price Per Item
+// Total Bill
+// Discount
+// Final Bill
+// Order Status
+
+// Restaurant Food Ordering System
+
+alert("Welcome to the Restaurant Food Ordering System!");
+
+// Variables
+var customerName;
+var foodItem;
+var mealType;
+var customerAge;
+var quantity;
+var pricePerItem;
+var totalBill;
+var discount = 0;
+var finalBill;
+var totalOrders = 0;
+var orderStatus;
+
+// User Input
+customerName = prompt("Enter Customer Name:");
+customerAge = Number(prompt("Enter Customer Age:"));
+foodItem = prompt("Enter Food Item:");
+quantity = Number(prompt("Enter Quantity:"));
+mealType = prompt("Enter Meal Type (Breakfast / Lunch / Dinner):");
+
+// Confirm Order
+var confirmOrder = confirm("Do you want to confirm your order?");
+
+// Set Price Per Item
+if (mealType == "Breakfast") {
+    pricePerItem = 300;
+}
+else if (mealType == "Lunch") {
+    pricePerItem = 500;
+}
+else if (mealType == "Dinner") {
+    pricePerItem = 800;
+}
+else {
+    pricePerItem = 0;
+    console.log("Invalid Meal Type");
+}
+
+// Function: Welcome Customer
+function welcomeCustomer() {
+    console.log("Welcome " + customerName + "! Your food order has been placed successfully.");
+}
+
+// Function: Check Eligibility
+function checkEligibility() {
+    if (customerAge >= 15) {
+        console.log("Customer is eligible to place the order.");
+        return true;
+    }
+    else {
+        console.log("Customer is not eligible to place the order.");
+        return false;
+    }
+}
+
+// Function: Calculate Discount
+function calculateDiscount() {
+    if (quantity > 8) {
+        discount = totalBill * 20 / 100;
+    }
+    else if (quantity >= 4 && quantity <= 8) {
+        discount = totalBill * 10 / 100;
+    }
+    else {
+        discount = 0;
+    }
+}
+
+// Function: Calculate Final Bill
+function calculateFinalBill() {
+    finalBill = totalBill - discount;
+}
+
+// Calculate Total Bill
+totalBill = pricePerItem * quantity;
+
+// Check Age Even or Odd
+if (customerAge % 2 == 0) {
+    console.log("Customer Age is Even.");
+}
+else {
+    console.log("Customer Age is Odd.");
+}
+
+// Increase Total Orders
+totalOrders++;
+
+// Welcome Message
+welcomeCustomer();
+
+// Eligibility
+checkEligibility();
+
+// Order Status
+if (confirmOrder && customerAge >= 15) {
+    orderStatus = "Confirmed";
+    console.log("Order Confirmed.");
+}
+else {
+    orderStatus = "Rejected";
+    console.log("Order Rejected.");
+}
+
+// Nested If
+if (customerAge >= 15) {
+    if (mealType == "Breakfast" || mealType == "Lunch" || mealType == "Dinner") {
+        calculateDiscount();
+    }
+}
+
+// Calculate Final Bill
+calculateFinalBill();
+
+console.log("Total Bill: Rs. " + totalBill);
+console.log("Discount: Rs. " + discount);
+console.log("Final Bill: Rs. " + finalBill);
+
+// Display Item Numbers
+for (var i = 1; i <= quantity; i++) {
+    console.log("Item Number: " + i);
+}
+
+// Order Processing
+var orderComplete = false;
+
+for (var j = 1; j <= 5; j++) {
+    if (!orderComplete) {
+        console.log("Processing Order...");
+        orderComplete = true;
+        console.log("Order Completed Successfully.");
+        break;
+    }
+}
+
+// Receipt
+console.log("     RESTAURANT ORDER RECEIPT");
+
+console.log("Customer Name  : " + customerName);
+console.log("Age            : " + customerAge);
+console.log("Food Item      : " + foodItem);
+console.log("Meal Type      : " + mealType);
+console.log("Quantity       : " + quantity);
+console.log("Price Per Item : Rs. " + pricePerItem);
+console.log("Total Bill     : Rs. " + totalBill);
+console.log("Discount       : Rs. " + discount);
+console.log("Final Bill     : Rs. " + finalBill);
+console.log("Order Status   : " + orderStatus);
+console.log("Total Orders   : " + totalOrders);
+
+console.log("Thank You! Visit Again.");
