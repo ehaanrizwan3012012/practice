@@ -1,0 +1,170 @@
+// Write a JavaScript program for a Library Membership System. Do not use arrays.
+
+// Display a welcome message.
+// Declare variables for:
+// Member Name
+// Age
+// Membership Type (Basic/Premium)
+// Membership Fee
+// Discount
+// Final Fee
+// Take input for the member's name, age, and membership type.
+// Ask the user to confirm the membership.
+// Set the membership fee:
+// Basic = Rs. 1000
+// Premium = Rs. 2000
+// Check whether the member's age is even or odd.
+// Increase the total number of registered members after successful registration.
+// Apply a 20% discount for Premium members and 10% discount for Basic members.
+// Calculate the final fee after the discount.
+// Check whether the member is 15 years or above.
+// Display the registration number from 1 to 5.
+// Stop the registration process once it is completed successfully.
+// Create the following functions:
+// welcomeMember()
+// checkEligibility()
+// calculateDiscount()
+// calculateFinalFee()
+// Display a Membership Receipt containing:
+// Member Name
+// Age
+// Membership Type
+// Membership Fee
+// Discount
+// Final Fee
+// Registration Status
+
+// Library Membership System
+
+alert("Welcome to the Library Membership System!");
+
+// Variables
+var memberName;
+var age;
+var membershipType;
+var membershipFee;
+var discount = 0;
+var finalFee;
+var registeredMembers = 0;
+var registrationStatus;
+
+// User Input
+memberName = prompt("Enter Member Name:");
+age = Number(prompt("Enter Member Age:"));
+membershipType = prompt("Enter Membership Type (Basic / Premium):");
+
+// Confirm Registration
+var confirmRegistration = confirm("Do you want to confirm your membership?");
+
+// Set Membership Fee
+if (membershipType == "Basic") {
+    membershipFee = 1000;
+}
+else if (membershipType == "Premium") {
+    membershipFee = 2000;
+}
+else {
+    membershipFee = 0;
+    console.log("Invalid Membership Type");
+}
+
+// Function: Welcome Member
+function welcomeMember() {
+    console.log("Welcome " + memberName + "! Your library membership has been registered successfully.");
+}
+
+// Function: Check Eligibility
+function checkEligibility() {
+    if (age >= 15) {
+        console.log("Member is eligible.");
+        return true;
+    }
+    else {
+        console.log("Member is not eligible.");
+        return false;
+    }
+}
+
+// Function: Calculate Discount
+function calculateDiscount() {
+    if (membershipType == "Premium") {
+        discount = membershipFee * 20 / 100;
+    }
+    else if (membershipType == "Basic") {
+        discount = membershipFee * 10 / 100;
+    }
+    else {
+        discount = 0;
+    }
+}
+
+// Function: Calculate Final Fee
+function calculateFinalFee() {
+    finalFee = membershipFee - discount;
+}
+
+// Check Age Even or Odd
+if (age % 2 == 0) {
+    console.log("Age is Even.");
+}
+else {
+    console.log("Age is Odd.");
+}
+
+// Increase Registered Members
+registeredMembers++;
+
+// Welcome
+welcomeMember();
+
+// Eligibility
+checkEligibility();
+
+// Registration Status
+if (confirmRegistration && age >= 15) {
+    registrationStatus = "Confirmed";
+    console.log("Registration Confirmed.");
+}
+else {
+    registrationStatus = "Rejected";
+    console.log("Registration Rejected.");
+}
+
+// Calculate Fee
+calculateDiscount();
+calculateFinalFee();
+
+console.log("Membership Fee: Rs. " + membershipFee);
+console.log("Discount: Rs. " + discount);
+console.log("Final Fee: Rs. " + finalFee);
+
+// Registration Numbers
+for (var i = 1; i <= 5; i++) {
+    console.log("Registration Number: " + i);
+}
+
+// Registration Process
+var registrationComplete = false;
+
+for (var j = 1; j <= 5; j++) {
+    if (!registrationComplete) {
+        console.log("Processing Registration...");
+        registrationComplete = true;
+        console.log("Registration Completed Successfully.");
+        break;
+    }
+}
+
+// Receipt
+console.log("    LIBRARY MEMBERSHIP RECEIPT");
+
+console.log("Member Name        : " + memberName);
+console.log("Age                : " + age);
+console.log("Membership Type    : " + membershipType);
+console.log("Membership Fee     : Rs. " + membershipFee);
+console.log("Discount           : Rs. " + discount);
+console.log("Final Fee          : Rs. " + finalFee);
+console.log("Registration Status: " + registrationStatus);
+console.log("Registered Members : " + registeredMembers);
+
+console.log("Thank You! Visit Again.");
